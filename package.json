@@ -4,14 +4,14 @@
   "private": true,
   "author": "srini",
   "description": "Desktop Application made with react",
-  "main": "build/main.js",
+  "main": "build/electron/main.js",
   "homepage": "./",
   "dependencies": {
     "@types/jest": "24.0.11",
     "@types/node": "11.13.8",
     "@types/react": "16.8.14",
     "@types/react-dom": "16.8.4",
-    "@types/react-redux": "7.0.7",
+    "@types/react-redux": "^7.0.8",
     "@types/redux-actions": "^2.6.0",
     "electron-is-dev": "^1.0.1",
     "react": "^16.8.6",
@@ -24,8 +24,8 @@
     "typescript": "3.4.5"
   },
   "devDependencies": {
-    "cross-env": "^5.2.0",
     "concurrently": "^4.1.0",
+    "cross-env": "^5.2.0",
     "electron": "^4.1.4",
     "electron-builder": "^20.39.0",
     "wait-on": "^3.2.0"
@@ -35,9 +35,9 @@
     "react-build": "react-scripts build",
     "test": "react-scripts test",
     "compile-electron": "tsc -p electron-tsconfig.json",
-    "electron-build": "electron-builder",
+    "electron-build": "electron-builder --em.main=build/electron/main.js",
     "postinstall": "electron-builder install-app-deps",
-    "release": "yarn react-build && yarn compile-electron && electron-builder --publish=always",
+    "release": "yarn react-build && yarn compile-electron && electron-builder --publish=never",
     "build": "yarn react-build && yarn compile-electron && yarn electron-build",
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"yarn compile-electron && wait-on http://localhost:3000 && electron .\""
   },
