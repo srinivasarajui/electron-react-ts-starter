@@ -11,7 +11,10 @@ interface AppProps {
 }
 
 const App: React.FC<AppProps> = (props:AppProps) => {
-    return (
+  const handleClick = () => {
+    props.closeApp()
+  };
+  return (
     <div className="App">
       <header className="App-header">
         <p>
@@ -29,7 +32,7 @@ const App: React.FC<AppProps> = (props:AppProps) => {
           Learn React
         </a>
         <p>
-          <button onClick={() => props.closeApp()}>Close</button>
+          <button onClick={handleClick}>Close</button>
         </p>
         <p>
           { props.system.isDevToolsOpen?'Dev tools is Open':'Dev tools is Closed' }

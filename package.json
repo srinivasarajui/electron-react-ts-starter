@@ -28,6 +28,10 @@
     "cross-env": "^5.2.0",
     "electron": "^4.1.4",
     "electron-builder": "^20.39.0",
+    "tslint": "^5.16.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.0.0",
     "wait-on": "^3.2.0"
   },
   "scripts": {
@@ -35,6 +39,7 @@
     "react-build": "react-scripts build",
     "test": "react-scripts test",
     "compile-electron": "tsc -p electron-tsconfig.json",
+    "lint": "tslint '{src,test,mocks}/**/*.{ts,tsx}' --project ./tsconfig.json",
     "electron-build": "electron-builder --em.main=build/electron/main.js",
     "postinstall": "electron-builder install-app-deps",
     "release": "yarn react-build && yarn compile-electron && electron-builder --publish=never",

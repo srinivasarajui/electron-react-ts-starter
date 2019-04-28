@@ -18,10 +18,10 @@ export function* allSagas() {
 }
 
 export default function configureStore(initialState?: AppState) {
-   const sagaMiddleware: SagaMiddleware = createSagaMiddleware();
+  const sagaMiddleware: SagaMiddleware = createSagaMiddleware();
 
-   const middleware = [sagaMiddleware];
-   const middleWareEnhancer = applyMiddleware(...middleware);
+  const middleware = [sagaMiddleware];
+  const middleWareEnhancer = applyMiddleware(...middleware);
   const store =  createStore(rootReducer, initialState, middleWareEnhancer) as Store<AppState>;
   sagaMiddleware.run(allSagas);
   return store;
