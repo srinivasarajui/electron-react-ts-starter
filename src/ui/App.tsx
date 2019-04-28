@@ -1,9 +1,17 @@
 import React from 'react';
-import {remote} from './electron.utils'
 import './App.css';
+import { closeApp, } from './store/system/actions';
+import { SystemState } from './store/system/types';
+import { AppState } from './store';
+import { connect } from 'react-redux';
 
-const App: React.FC = () => {
-  return (
+interface AppProps {
+  closeApp: typeof closeApp;
+  system: SystemState;
+}
+
+const App: React.FC<AppProps> = (props:AppProps) => {
+    return (
     <div className="App">
       <header className="App-header">
         <p>
@@ -21,14 +29,21 @@ const App: React.FC = () => {
           Learn React
         </a>
         <p>
-          <button onClick={() => remote.getCurrentWindow().close()}>Close</button>
+          <button onClick={() => props.closeApp()}>Close</button>
         </p>
         <p>
-          <button onClick={() => remote.getCurrentWindow().webContents.openDevTools()}>Open DevTools</button>
+          { props.system.isDevToolsOpen?'Dev tools is Open':'Dev tools is Closed' }
         </p>
       </header>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state: AppState) => ({
+  system: state.system
+});
+export default connect(
+  mapStateToProps,
+  { closeApp }
+)(App);
+
