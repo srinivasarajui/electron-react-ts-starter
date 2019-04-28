@@ -1,44 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# electron-react-ts-starter
 
-## Available Scripts
+## using this starter
 
 In the project directory, you can run:
 
 ### `npm start`
 
 Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
+The page will reload if you make edits ui folder<br>
 You will also see any lint errors in the console.
 
-### `npm test`
+### `npm release`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This build the application for release.
 
-### `npm run build`
+## Steps used to create this project
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+npx create-react-app electron-react-ts-starter --typescript
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Clean unwanted files and fix App.tsx
+-> remove app.test.tsx, logo.svg
+-> Change App.tsx (remove reference from logo.svg) and App.css
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+create 2 new folders in src.
+  -> ui
+  -> electron
 
-### `npm run eject`
+Move  App.tsx and App.css to ui.
+Add Node modules for electron
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+yarn add --dev electron electron-builder concurrently wait-on
+yarn add electron-is-dev cross-env
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Add main.ts in electron folder
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+added electron-tsconfig.json
+added electron-builder.yml.
+changed package.json

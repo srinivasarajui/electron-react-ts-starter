@@ -2,21 +2,38 @@
   "name": "electron-react-ts-starter",
   "version": "0.1.0",
   "private": true,
+  "author": "srini",
+  "description": "Desktop Application made with react",
+  "main": "build/main.js",
+  "homepage": "./",
   "dependencies": {
     "@types/jest": "24.0.11",
     "@types/node": "11.13.8",
     "@types/react": "16.8.14",
     "@types/react-dom": "16.8.4",
+    "electron-is-dev": "^1.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.0",
     "typescript": "3.4.5"
   },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "concurrently": "^4.1.0",
+    "electron": "^4.1.4",
+    "electron-builder": "^20.39.0",
+    "wait-on": "^3.2.0"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "compile-electron": "tsc -p electron-tsconfig.json",
+    "electron-build": "electron-builder",
+    "postinstall": "electron-builder install-app-deps",
+    "release": "yarn react-build && yarn compile-electron && electron-builder --publish=always",
+    "build": "yarn react-build && yarn compile-electron && yarn electron-build",
+    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"yarn compile-electron && wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
     "extends": "react-app"
